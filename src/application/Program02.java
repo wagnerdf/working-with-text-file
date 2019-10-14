@@ -8,16 +8,11 @@ import java.io.IOException;
 		
 		public static void main(String[] args) {
 		
-		String path = "c:\\Temp\\ino.txt";
-		FileReader fr = null;
-		BufferedReader br = null;
-		
+		String path = "c:\\Temp\\in.txt";
+				
 	
-		try
-		{
-			fr = new FileReader(path);      // referenciando o arquivo para leitura
-			br = new BufferedReader(fr);    //Referencia o arquivo no BufferedReader deixando mais rapido a leitura
-			
+		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+						
 			String line = br.readLine();
 	
 			while (line != null) {          //Percorre todo arquivo
@@ -28,18 +23,6 @@ import java.io.IOException;
 		catch(IOException e){
 			System.out.println("Error: " + e.getMessage());
 		}
-		finally{
-			try {
-				if (br != null) {
-					br.close();
-				}
-				if (fr != null) {
-					fr.close();
-				}
-			} 
-			catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+		
 	}
 }
